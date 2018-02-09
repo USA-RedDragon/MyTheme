@@ -1,0 +1,92 @@
+-- vim: ts=4 sw=4 noet ai cindent syntax=lua
+--[[
+Conky, a system monitor, based on torsmo
+
+Any original torsmo code is licensed under the BSD license
+
+All code written since the fork of torsmo is licensed under the GPL
+
+Please see COPYING for details
+
+Copyright (c) 2004, Hannu Saransaari and Lauri Hakkarainen
+Copyright (c) 2005-2012 Brenden Matthews, Philip Kovacs, et. al. (see AUTHORS)
+All rights reserved.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+]]
+
+conky.config = {
+    alignment = 'top_left',
+    background = true,
+    border_width = 1,
+    cpu_avg_samples = 2,
+    default_color = 'white',
+    default_outline_color = 'white',
+    default_shade_color = 'white',
+    draw_borders = false,
+    draw_graph_borders = true,
+    draw_outline = false,
+    draw_shades = false,
+    use_xft = true,
+    font = 'SF Mono Regular:size=12',
+    gap_x = 5,
+    gap_y = 60,
+    minimum_height = 5,
+    minimum_width = 5,
+    net_avg_samples = 2,
+    no_buffers = true,
+    out_to_console = false,
+    out_to_stderr = false,
+    extra_newline = false,
+    own_window = true,
+    own_window_class = 'Conky',
+    own_window_type = 'desktop',
+    double_buffer = true,
+    own_window_transparent = true,
+    own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+    stippled_borders = 0,
+    update_interval = 1.0,
+    uppercase = false,
+    use_spacer = 'none',
+    show_graph_scale = false,
+    show_graph_range = false
+}
+
+conky.text = [[
+$nodename - $sysname $kernel on $machine
+$hr
+${color white}Weather:$color
+ ${color grey}${execi 300 /theme/weather.sh 73165} $color
+$hr
+${color grey}Uptime:$color                $uptime
+${color grey}CPU Frequency:$color   $freq_g GHz
+${color grey}RAM Usage:$color         $mem/$memmax - $memperc% ${membar 4}
+${color grey}CPU Usage:$color          $cpu% ${cpubar 4}
+$hr
+${color grey}File systems:
+ /  	                 $color${fs_used /}/${fs_size /} ${fs_bar 6 /}
+ /boot              $color${fs_used /boot}/${fs_size /boot} ${fs_bar 6 /boot}
+ /boot/efi         $color${fs_used /boot/efi}/${fs_size /boot/efi} ${fs_bar 6 /boot/efi}
+ /ccache          $color${fs_used /ccache}/${fs_size /ccache} ${fs_bar 6 /ccache}
+ /nvme             $color${fs_used /nvme}/${fs_size /nvme} ${fs_bar 6 /nvme}
+ /fast-storage   $color${fs_used /fast-storage}/${fs_size /fast-storage} ${fs_bar 6 /fast-storage}
+ /android-src    $color${fs_used /android-src}/${fs_size /android-src} ${fs_bar 6 /android-src}
+ /android-out   $color${fs_used /android-out}/${fs_size /android-out} ${fs_bar 6 /android-out}
+ /misc              $color${fs_used /misc}/${fs_size /misc} ${fs_bar 6 /misc}
+ /windows        $color${fs_used /windows}/${fs_size /windows} ${fs_bar 6 /windows}
+ /slow-storage $color${fs_used /slow-storage}/${fs_size /slow-storage} ${fs_bar 6 /slow-storage}
+$hr
+${color grey}Networking:
+ ${color white}Ethernet: Up: ${color grey}${upspeed enp11s0}$color Down: ${color grey}${downspeed enp11s0}$color
+ ${color white}Wireless: Up: ${color grey}${upspeed wlp2s0}$color Down: ${color grey}${downspeed wlp2s0}$color
+]]

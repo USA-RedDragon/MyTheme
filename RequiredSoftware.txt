@@ -1,0 +1,7 @@
+cava
+plank
+conky
+rEFInd
+wmctrl
+
+For fonts copy .ttf files to $HOME/.local/share/fonts and run fc-cache -f -v to add to system cache, then you can change the system font in settings.
